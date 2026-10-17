@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master AIA • Plateforme de Révision AMRV & CAMA</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Patrick+Hand&family=Kalam:wght@400;700&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- TOP FLOATING PILL NAVIGATION -->
+    <nav class="top-nav">
+      <div class="nav-brand">
+        <div class="brand-dot"></div>
+        <span>MASTER AIA • AMRV & CAMA</span>
+      </div>
+      <div class="nav-filters">
+        <button class="module-btn active all" data-module="all">Tous</button>
+        <button class="module-btn amrv" data-module="amrv">AMRV</button>
+        <button class="module-btn cama" data-module="cama">CAMA</button>
+      </div>
+    </nav>
+
+    <!-- ACADEMIC PAPER-MÂCHÉ HERO SECTION -->
+    <section class="hero-academic-wrap">
+      <div class="hero-academic-grid">
+        
+        <!-- Left: Academic Content & Callouts -->
+        <div class="hero-academic-left">
+          <div class="academic-badge-row">
+            <span class="academic-badge">
+              <span class="badge-icon">🎓</span> Master AIA • USTO-MB
+            </span>
+            <span class="exam-sticky-tag">
+              ⚡ Examen Demain
+            </span>
+          </div>
+
+          <h1 class="academic-hero-title">
+            Plateforme de Révision<br>
+            pour <span class="doodle-circled">AMRV & CAMA
+              <svg class="doodle-circle-svg" viewBox="0 0 280 75" preserveAspectRatio="none">
+                <path d="M 12 38 C 10 18, 60 8, 140 10 C 220 12, 270 22, 268 42 C 265 62, 200 70, 130 68 C 60 66, 12 55, 18 32 C 24 16, 75 10, 115 8" fill="none" stroke="#facc15" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </h1>
+
+          <p class="academic-hero-subtitle">
+            Tout le programme officiel condensé en <mark class="hero-hl-yellow">fiches bristol cartonnées</mark> : polycopié du Pr. Abdelkrim Mebarki (26 pages), chaîne JPEG, haptique 1000 Hz, notes manuscrites du TD1 et simulateur QCM officiel.
+          </p>
+
+          <div class="hero-actions-container">
+            <div class="hero-actions">
+              <button class="hero-btn-primary" onclick="document.querySelector('[data-tab=\'courses\']').click(); document.getElementById('courses-list').scrollIntoView({behavior: 'smooth'});">
+                📖 Ouvrir les Fiches de Cours
+              </button>
+              <button class="hero-btn-secondary" onclick="document.querySelector('[data-tab=\'quiz\']').click(); document.getElementById('section-quiz').scrollIntoView({behavior: 'smooth'});">
+                📝 S'entraîner au QCM (-0.5)
+              </button>
+            </div>
+            <div class="doodle-arrow-hint">
+              <svg class="arrow-sketch-svg" viewBox="0 0 65 35">
+                <path d="M 5 28 C 25 28, 45 10, 58 18 M 46 10 L 58 18 L 48 26" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="doodle-arrow-text">Prêt pour l'examen !</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Vintage Polaroid Photo with Floating Icons -->
+        <div class="hero-academic-right">
+          <div class="polaroid-wrapper">
+            <div class="polaroid-scotch-tape"></div>
+            <div class="polaroid-card">
+              <div class="polaroid-photo-frame">
+                <img src="assets/hero_polaroid.jpg" alt="Labo Réalité Virtuelle & Multimédia" class="polaroid-img">
+              </div>
+              <div class="polaroid-footer">
+                <span class="polaroid-handwritten-title">Labo Multimédia & VR • Session 2026 📸</span>
+              </div>
+            </div>
+
+            <!-- Sticky Note Attached to Polaroid -->
+            <div class="polaroid-postit">
+              <div class="postit-scotch"></div>
+              <div class="postit-pin">📌</div>
+              <strong>À Retenir Absolument :</strong>
+              <ul>
+                <li>• Shannon : Fe ≥ 2·Fmax</li>
+                <li>• YCbCr 4:2:0 : -50% taille</li>
+                <li>• Haptique : 1000 Hz (&lt;1ms)</li>
+              </ul>
+            </div>
+
+            <!-- Floating Academic Badges Orbiting Polaroid -->
+            <div class="floating-pill float-pill-1">🥽 Réalité Virtuelle</div>
+            <div class="floating-pill float-pill-2">🎵 Psychoacoustique</div>
+            <div class="floating-pill float-pill-3">📐 Modélisation 3D</div>
+            <div class="floating-pill float-pill-4">⚡ Boucle 1000 Hz</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GAPLESS BENTO GRID (BRIGHT ACADEMIC CARDS) -->
+    <div class="bento-grid">
+      <!-- Bento Card 1: CAMA Chapitre 1 (Span 8) -->
+      <div class="bento-card bento-span-8" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'courses\']').click(); document.getElementById('courses-list').scrollIntoView({behavior: 'smooth'});">
+        <div class="card-washi-tape"></div>
+        <img src="assets/cama_bright.jpg" alt="CAMA Multimédia" class="bento-card-bg">
+        <div class="bento-header">
+          <span class="bento-pill bento-pill-cama">CAMA • 26 Pages Officielles</span>
+          <span style="font-size: 0.82rem; color: #1e3a8a; font-weight: 600;">Son, Image, Vidéo, Haptique</span>
+        </div>
+        <div class="bento-title">Chaîne JPEG, Formules Shannon & Haptique 1000 Hz</div>
+        <div class="bento-desc">
+          Toutes les formules du cours : Shannon-Nyquist, débit PCM, sous-échantillonnage YCbCr 4:2:0, DCT 8x8, structure GOP (I, P, B), critère SAD, et norme IEEE 1918.1.1-2024.
+        </div>
+        <div class="bento-tags">
+          <span class="bento-tag-item tag-accent-yellow">✦ DCT 8×8 & Zigzag</span>
+          <span class="bento-tag-item">GOP & SAD</span>
+          <span class="bento-tag-item">ADSR & Fletcher-Munson</span>
+          <span class="bento-tag-item">Passivité Re(Z) ≥ 0</span>
+        </div>
+      </div>
+
+      <!-- Bento Card 2: AMRV Modèle vs Simulation (Span 4) -->
+      <div class="bento-card bento-span-4" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'courses\']').click(); document.getElementById('courses-list').scrollIntoView({behavior: 'smooth'});">
+        <div class="card-washi-tape"></div>
+        <img src="assets/amrv_bright.jpg" alt="AMRV Simulation" class="bento-card-bg">
+        <div class="bento-header">
+          <span class="bento-pill bento-pill-amrv">AMRV • Note TD Manuscrite</span>
+          <span style="font-size: 0.82rem; color: #0284c7; font-weight: 600;">Question Récurrente</span>
+        </div>
+        <div class="bento-title">Modèle vs Simulation</div>
+        <div class="bento-desc">
+          Distinction formelle du TD1 : description statique vs dynamique dans le temps, sortie modèle vs exécution.
+        </div>
+        <div class="bento-tags">
+          <span class="bento-tag-item tag-accent-cyan">Comprendre, Modéliser, Implémenter</span>
+          <span class="bento-tag-item">Score Immersion</span>
+        </div>
+      </div>
+
+      <!-- Bento Card 3: Annales TD & Exercices Résolus (Span 6) -->
+      <div class="bento-card bento-span-6" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'td\']').click(); document.getElementById('section-td').scrollIntoView({behavior: 'smooth'});">
+        <div class="card-washi-tape"></div>
+        <div class="bento-header">
+          <span class="bento-pill bento-pill-amrv">3 Exercices Types Résolus</span>
+          <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">TD & Examens</span>
+        </div>
+        <div class="bento-title">Calculs Audio CD, Débit Vidéo & Encodage RLE</div>
+        <div class="bento-desc">
+          Exercices d'application complets étape par étape : taille audio non compressé, débit binaire d'un flux vidéo avec sous-échantillonnage, et compression RLE sur matrice bitmap.
+        </div>
+        <div class="bento-tags">
+          <span class="bento-tag-item">Audio CD (1.41 Mbps)</span>
+          <span class="bento-tag-item">YCbCr 4:2:0 (-50%)</span>
+          <span class="bento-tag-item">SAD Minimale</span>
+        </div>
+      </div>
+
+      <!-- Bento Card 4: QCM avec pénalité officielle (Span 6) -->
+      <div class="bento-card bento-span-6" style="cursor: pointer;" onclick="document.querySelector('[data-tab=\'quiz\']').click(); document.getElementById('section-quiz').scrollIntoView({behavior: 'smooth'});">
+        <div class="card-washi-tape"></div>
+        <div class="bento-header">
+          <span class="bento-pill bento-pill-warn">Simulateur Examen</span>
+          <span style="font-size: 0.82rem; color: #b45309; font-weight: 700;">-0.5 par mauvaise réponse</span>
+        </div>
+        <div class="bento-title">14 Questions Officielles d'Annales</div>
+        <div class="bento-desc">
+          Testez-vous en conditions d'examen avec le barème réel (+1 / -0.5 / 0). Explications détaillées instantanées à chaque réponse.
+        </div>
+        <div class="bento-tags">
+          <span class="bento-tag-item">Pièges Classiques</span>
+          <span class="bento-tag-item">Loi de Weber 7-10%</span>
+          <span class="bento-tag-item">Courbes Fletcher-Munson</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROL & STATS BAR -->
+    <div class="control-bar">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="search-input" placeholder="Rechercher une notion, formule, tableau, question d'examen... (Taper '/' pour chercher)">
+      </div>
+      <div class="stats-card">
+        <span>Statut de révision :</span>
+        <strong id="readiness-score" style="color: #38bdf8;">100% Couverture Examen</strong>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="courses">
+        <span>Synthèses & Tableaux</span>
+        <span class="badge-count" id="badge-courses">0</span>
+      </button>
+      <button class="tab-btn" data-tab="videos">
+        <span>Vidéos & Explications</span>
+        <span class="badge-count" id="badge-videos">5</span>
+      </button>
+      <button class="tab-btn" data-tab="documents">
+        <span>Documents & PDF Officiels</span>
+        <span class="badge-count" id="badge-docs">5</span>
+      </button>
+      <button class="tab-btn" data-tab="flashcards">
+        <span>Flashcards (Mémorisation)</span>
+        <span class="badge-count" id="badge-fc">0</span>
+      </button>
+      <button class="tab-btn" data-tab="td">
+        <span>Entraînement TD & Annales</span>
+        <span class="badge-count" id="badge-td">0</span>
+      </button>
+      <button class="tab-btn" data-tab="quiz">
+        <span>Simulateur QCM d'Examen</span>
+        <span class="badge-count" id="badge-quiz">0</span>
+      </button>
+      <button class="tab-btn" data-tab="glossary">
+        <span>Mémento / Définitions Clés</span>
+      </button>
+    </nav>
+
+    <!-- SECTION 1: COURSES SYNTHESIS -->
+    <section id="section-courses" class="view-section active">
+      <div class="notebook-mode-bar">
+        <div class="notebook-mode-status">
+          <span class="notebook-mode-icon">📓</span>
+          <div>
+            <div style="font-weight: 800; color: #0f172a; font-size: 0.98rem;">Fiches Bristol & Cahier d'Étude Quadrillé</div>
+            <div style="font-size: 0.84rem; color: #64748b; font-weight: 500;">Feuille cartonnée blanche 5×5mm, écriture au stylo, surligneur fluo & cadres médias intégrés</div>
+          </div>
+        </div>
+        <div class="notebook-style-toggle">
+          <button class="style-toggle-btn active" id="btn-style-paper" title="Style Fiche Cartonnée & Cahier Blanc">📓 Fiche Papier</button>
+          <button class="style-toggle-btn" id="btn-style-dark" title="Style Studio Sombre">💻 Studio Sombre</button>
+        </div>
+      </div>
+      <div id="courses-list" class="notebook-theme">
+        <!-- Dynamically populated with parsed Markdown, Real Tables and Infographics -->
+      </div>
+    </section>
+
+    <!-- SECTION 1.B: VIDEOS -->
+    <section id="section-videos" class="view-section">
+      <div class="academic-intro-card amrv-intro-theme">
+        <div class="card-washi-tape"></div>
+        <div class="intro-badge-row">
+          <span class="intro-pill">📺 Vidéothèque Ciblée par Notion</span>
+        </div>
+        <h4 class="intro-card-title">Vidéos de Laboratoire & Démonstrations 3D</h4>
+        <p class="intro-card-desc">
+          Sélection des meilleures démonstrations en laboratoire et animations pour assimiler chaque notion d'examen : 
+          oscilloscope pour Shannon-Nyquist, animations 3D de la DCT et quantification JPEG, estimation de mouvement vidéo (SAD), et jumeaux numériques.
+        </p>
+      </div>
+      <div id="videos-list" class="video-grid">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- SECTION 1.C: DOCUMENTS & PDF -->
+    <section id="section-documents" class="view-section">
+      <div class="academic-intro-card cama-intro-theme">
+        <div class="card-washi-tape"></div>
+        <div class="intro-badge-row">
+          <span class="intro-pill" style="background: #dcfce7; color: #15803d; border-color: #bbf7d0;">📚 Bibliothèque Officielle</span>
+        </div>
+        <h4 class="intro-card-title">Documents Officiels & Polycopiés PDF</h4>
+        <p class="intro-card-desc">
+          Consultez et téléchargez les supports officiels du module : polycopié complet de 26 pages du Pr. Abdelkrim Mebarki, planche originale manuscrite du TD1 (Modèle vs Simulation), synthèse de la norme Haptique IEEE 1918.1.1 et mémento de formules.
+        </p>
+      </div>
+      <div id="documents-list" class="pdf-grid">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- SECTION 2: FLASHCARDS -->
+    <section id="section-flashcards" class="view-section">
+      <div class="flashcards-container">
+        <div class="flashcard-progress-bar">
+          <div class="flashcard-progress-fill" id="fc-progress-fill"></div>
+        </div>
+
+        <div class="card-flipper-area" id="flashcard-flipper" title="Cliquez ou appuyez sur Espace pour retourner la carte">
+          <div class="flashcard-inner">
+            <!-- FRONT -->
+            <div class="flashcard-face flashcard-front">
+              <div class="fc-meta">
+                <span class="fc-category" id="fc-category">MODULE • CATÉGORIE</span>
+                <span id="fc-mastered-status" style="display:none; color: #059669; font-size: 0.8rem; font-weight: 700; background: #ecfdf5; padding: 2px 8px; border-radius: 4px; border: 1px solid #a7f3d0;">✓ Maîtrisée</span>
+              </div>
+              <div class="fc-content" id="fc-front-text">Chargement de la question...</div>
+              <div class="fc-footer">
+                <span id="fc-hint" class="fc-hint-badge"></span>
+                <div style="margin-top: 8px; font-weight: 600;">Cliquez ou appuyez sur Espace pour retourner</div>
+              </div>
+            </div>
+
+            <!-- BACK -->
+            <div class="flashcard-face flashcard-back">
+              <div class="fc-meta">
+                <span class="fc-category" style="color: #059669; font-weight: 800;">RÉPONSE DU COURS</span>
+                <span id="fc-counter" style="color: #64748b; font-size: 0.85rem; font-weight: 700;">1 / 20</span>
+              </div>
+              <div class="fc-content" id="fc-back-text" style="color: #0f172a;">Chargement de la réponse...</div>
+              <div class="fc-footer">
+                <span style="font-weight: 600; color: #475569;">Auto-évaluez votre réponse :</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FLASHCARD CONTROLS -->
+        <div class="flashcard-controls">
+          <button class="fc-btn btn-next" id="fc-btn-prev">Précédent</button>
+          <button class="fc-btn btn-review" id="fc-btn-review">À Revoir</button>
+          <button class="fc-btn btn-mastered" id="fc-btn-mastered">Je Maîtrise</button>
+          <button class="fc-btn btn-next" id="fc-btn-next">Suivant</button>
+        </div>
+        <p style="color: #64748b; font-size: 0.88rem; margin-top: 14px; text-align: center; font-weight: 500;">
+          Raccourcis clavier : <strong>Espace</strong> pour retourner la carte, <strong>Flèches Gauche / Droite</strong> pour naviguer.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TD & ANNALES EXERCISES -->
+    <section id="section-td" class="view-section">
+      <div class="academic-intro-card amrv-intro-theme">
+        <div class="card-washi-tape"></div>
+        <div class="intro-badge-row">
+          <span class="intro-pill">🎯 Préparation Ciblée aux Examens</span>
+        </div>
+        <h4 class="intro-card-title">Entraînement Ciblé pour le Test</h4>
+        <p class="intro-card-desc">
+          Le professeur s'inspire directement des <strong>premières fiches de TD</strong> et des <strong>sujets d'examen récents</strong>. 
+          Pratiquez avec les simulateurs interactifs ci-dessous (calculateur de score d'immersion, appariements des couches de modélisation, analyse de code VRML/X3D, et les 3 exercices d'application résolus).
+        </p>
+      </div>
+      <div id="td-list">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- SECTION 4: EXAM QCM SIMULATOR -->
+    <section id="section-quiz" class="view-section">
+      <div class="quiz-header-bar">
+        <div class="card-washi-tape"></div>
+        <div>
+          <div class="intro-badge-row" style="margin-bottom: 6px;">
+            <span class="intro-pill" style="background: #fef3c7; color: #b45309; border-color: #fde68a;">📝 Conditions Réelles d'Examen</span>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #0f172a; margin-bottom: 4px;">Simulateur d'Examen en Conditions Réelles</h3>
+          <p style="color: #475569; font-size: 0.94rem; line-height: 1.5;">Toutes les questions officielles des examens et devoirs surveillés récents avec barème réel.</p>
+        </div>
+        <div class="quiz-controls-cluster">
+          <div class="penalty-toggle">
+            <span>Règle officielle (-0.5 par erreur) :</span>
+            <label class="switch">
+              <input type="checkbox" id="penalty-checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="quiz-score-pill">
+            <span class="score-label">Votre Note : </span>
+            <strong id="quiz-score-val" class="score-num">0.0 / 0</strong>
+          </div>
+          <button class="btn-reset" id="btn-reset-quiz">Réinitialiser</button>
+        </div>
+      </div>
+      <div id="quiz-list">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- SECTION 5: GLOSSARY / RÉFÉRENCES -->
+    <section id="section-glossary" class="view-section">
+      <div class="academic-intro-card" style="margin-bottom: 26px;">
+        <div class="card-washi-tape"></div>
+        <div class="intro-badge-row">
+          <span class="intro-pill" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">🔖 Mémento & Références</span>
+        </div>
+        <h3 class="intro-card-title">Mémento & Définitions Essentielles</h3>
+        <p class="intro-card-desc">Retrouvez instantanément la définition officielle exacte de chaque concept clé du cours.</p>
+      </div>
+      <div class="glossary-grid" id="glossary-list">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- DOCUMENT MODAL VIEWER -->
+  <div id="doc-modal" class="doc-modal">
+    <div class="doc-modal-content">
+      <div class="doc-modal-header">
+        <span id="doc-modal-title" class="doc-modal-title">Aperçu du Document</span>
+        <button id="doc-modal-close" class="doc-modal-close" title="Fermer">&times;</button>
+      </div>
+      <div id="doc-modal-body" class="doc-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="diagrams.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
