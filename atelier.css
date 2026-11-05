@@ -339,3 +339,16 @@ progress { width: 100%; height: 8px; accent-color: var(--accent); }
 .scene-dash { stroke: #6a8273; stroke-dasharray: 4 4; }
 .scene-trace { stroke: #367b69; stroke-width: 3; }
 .scene-label { fill: #344a42; font: 700 13px "Kalam", sans-serif; }
+
+.notes-scroll .worked-solution > .experiment-figure {
+  padding: 8px 0 13px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed #b5ac90;
+  border-radius: 0;
+  box-shadow: none;
+}
+.experiment-scene { width: min(100%, 450px); }
+.experiment-heading { font-size: 16px; fill: #285946; }
+.experiment-link { stroke: #9c7731; }
+.experiment-ground { stroke: #918668; }

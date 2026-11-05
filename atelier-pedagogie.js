@@ -3,8 +3,8 @@ window.ATELIER_TD1 = {
   "td1-amvr.jpg": [
     {
       courseDiagram: "Deux essais, un même train~plan:Modèle de freinage > play:Rail sec ou humide > graph:Distances comparées~Garde la vitesse initiale et change l’adhérence pour étudier son effet.",
-      diagram: "Un essai de levage sous rafale~crane:Charge suspendue > plan:Câble + masse + vent > graph:Courbe du balancement~Le modèle fixe les règles. En les exécutant avec une rafale donnée, on obtient l’angle de la charge au fil du temps.",
-      icons: ["plan", "target", "cube", "graph", "loop"],
+      scene: "craneExperiment",
+      diagram: "Du pendule à la courbe~crane:Charge suspendue > graph:Angle au fil du temps~En haut, les éléments retenus dans le modèle. En bas, le mouvement calculé pour une rafale.",
       course: [
         ["Choisir ce que le modèle représente", "Un modèle est une abstraction construite pour répondre à une question. Pour étudier l’arrêt d’un train, on garde la vitesse, le freinage et l’adhérence. La couleur des wagons ne joue aucun rôle dans ce calcul."],
         ["Séparer l’état, les paramètres et les entrées", "La position et la vitesse décrivent l’état à un instant donné. La masse est un paramètre fixé pour l’essai. L’ordre de freiner est une entrée qui change au cours du temps. Le simulateur applique les règles pour faire évoluer l’état."],

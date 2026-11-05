@@ -16,13 +16,9 @@ window.TEST_ONE = {
     td: "td1-amvr.jpg",
     questions: [
       ["Q1 · Modélisation et simulation", "Comparer définition, objectif, objet d’étude, résultat et lien entre les deux.", `
-| Aspect | Modélisation | Simulation |
-| --- | --- | --- |
-| Définition | Construction d’une représentation du système | Exécution de cette représentation dans des conditions données |
-| Objectif | Choisir les aspects utiles et leurs règles | Étudier des comportements, comparer des scénarios ou entraîner |
-| Objet | Structure, état, variables et relations | Évolution de l’état pendant l’essai |
-| Résultat | Modèle géométrique, mathématique ou logique | Trajectoires, courbes, événements et indicateurs |
-| Lien | Donne les règles utilisées par le simulateur | Produit des observations qui permettent de réviser le modèle |
+**1. Modéliser.** On construit une représentation du système pour décider quels éléments et quelles règles comptent. Ici, on représente la charge suspendue par un pendule. La longueur du câble et la masse sont des paramètres. L’angle θ et sa vitesse décrivent le mouvement. La gravité et le vent entrent dans les règles. Le résultat de cette étape est **un modèle**.
+**2. Simuler.** On donne au modèle un état de départ et une rafale, puis on calcule son évolution. Le tracé indicatif montre l’angle qui augmente après la rafale, puis oscille autour de la verticale. La sortie est **une courbe dans le temps**. On peut comparer plusieurs essais pour étudier le balancement.
+**Le lien.** La simulation applique les règles du modèle. Si les courbes calculées s’écartent des mesures sur la grue, on peut revoir les hypothèses du modèle et refaire l’essai.
 *Modeling defines how the system is represented. Simulation executes the model to study its behavior under specified conditions.*
 `],
       ["Q2 · Pipeline du simulateur de grue", "Décrire les six étapes. Pour chacune, donner l’objectif, les actions, les outils logiciels et matériels et les acteurs.", `

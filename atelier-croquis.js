@@ -43,6 +43,33 @@
   }
 
   const workedScenes = {
+    craneExperiment: `<svg class="worked-scene experiment-scene" viewBox="0 0 340 304" role="img" aria-label="Modèle de la charge suspendue, puis courbe indicative de son angle lors d’une simulation avec rafale">
+      <g class="scene-pencil">
+        <path class="experiment-ground" d="M14 129q81-3 161 0m-154 5 8-5m7 5 8-5m7 5 8-5m7 5 8-5"/>
+        <path d="M39 126V40L57 23l132 19L40 40m17-16v103M40 52l16 12-16 12 16 12-16 12 16 12-16 12m24-87h12m-8-4v8"/>
+        <path d="M131 42h12v7h-12zm6 7 24 51m-8 4 16-7 7 15-16 7z"/>
+        <path class="scene-dash" d="M137 50v69"/>
+        <path d="M137 77q6 0 12-4m30 23q12-8 25-12m-7-1 7 1-3 6M198 53q-15 3-34 1m6-4-6 4 6 4m36 3q-12 3-29 2m5-4-5 4 6 3"/>
+        <path class="experiment-link" d="M170 141q6 9 2 19m-5-6 5 6 6-5"/>
+        <path d="M40 188v82h274m-278-76 4-6 4 6m264 72 6 4-6 4"/>
+        <path class="scene-dash" d="M41 228h262M85 228v40"/>
+        <path class="scene-trace" d="M42 228h43c12 0 13-30 29-30 15 0 17 53 34 53 15 0 17-42 34-42 15 0 19 34 34 34s17-27 32-27 17 21 31 21c9 0 15-8 22-9"/>
+        <path d="M85 272v7"/>
+      </g>
+      <g class="scene-label experiment-label">
+        <text class="experiment-heading" x="14" y="17">1 · Modéliser la charge</text>
+        <text x="120" y="77">θ</text>
+        <text x="214" y="60">rafale</text>
+        <text x="210" y="84">câble + masse</text>
+        <text x="177" y="134">verticale · θ = 0</text>
+        <text class="experiment-heading" x="14" y="176">2 · Simuler l’essai</text>
+        <text x="47" y="195">angle θ</text>
+        <text x="22" y="231">0</text>
+        <text x="67" y="294">rafale</text>
+        <text x="264" y="289">temps →</text>
+      </g>
+    </svg>`,
+
     craneWall: `<svg class="worked-scene" viewBox="0 0 330 145" role="img" aria-label="Grue, deux positions de la charge et distance minimale jusqu’au mur">
       <g class="scene-pencil">
         <path d="M15 124Q164 121 316 124M38 123V23l17-13 174 15-191-2m16-11v111m-15-89 14 11-14 12 14 12-14 12 14 12-14 13 14 14"/>
@@ -73,7 +100,7 @@
     });
     const flow = !tokens.includes("|");
     const cols = icons.length === 4 ? 2 : Math.min(icons.length, 3);
-    return `<figure class="study-sketch${compact ? " study-sketch-small" : ""}">
+    return `<figure class="study-sketch${compact ? " study-sketch-small" : ""}${scene === "craneExperiment" ? " experiment-figure" : ""}">
       <figcaption><span class="sketch-eyebrow">${escape(label)}</span><strong>${escape(title)}</strong></figcaption>
       ${workedScenes[scene] || `<ol class="sketch-nodes ${flow ? "sketch-flow" : "sketch-compare"}" data-cols="${cols}" style="--sketch-cols:${cols}">
         ${icons.map(([icon,label], i) => `<li>${flow ? `<span class="sketch-step" aria-hidden="true">${i + 1}</span>` : ""}${illustration(icon)}<span class="sketch-label">${escape(label)}</span>${tokens[2 * i + 1] === ">" ? '<span class="sketch-arrow" aria-hidden="true">→</span>' : ""}</li>`).join("")}
