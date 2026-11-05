@@ -108,19 +108,6 @@
     "MAVR_2024_2025_Exam_001.pdf": [120,187,255,323,393,462,531,601,670,740,37,105,174,243,318,388,457,526,596,665]
   };
 
-  const highlights = {
-    amvr: [
-      "Le modèle décrit les règles. La simulation montre leur résultat pendant un essai.",
-      "Six étapes. Donne un objectif, une action, un outil et un acteur à chacune.",
-      "Le casque suit le regard et les contrôleurs pilotent la grue."
-    ],
-    cama: [
-      "Deux canaux peuvent appartenir à la même dimension.",
-      "Précise ce que le nouveau canal conserve et ce que la perception perd.",
-      "Support = matériel. Canal = forme. Dimension = sens."
-    ]
-  };
-
   function extractParts(course) {
     const parts = [];
     let part;
@@ -286,11 +273,16 @@
           <div class="course-embed"></div>
         </details>
         ${prose(doc.lesson)}
-        ${course.parts.map(part => `<details class="course-part" id="course-part-${part.num}">
+        ${course.parts.map(part => {
+          const applies = q => q.refs.some(([c, num]) => c === courseIndex && num === part.num);
+          const related = applies(question) ? questionIndex : doc.questions.findIndex(applies);
+          return `<details class="course-part" id="course-part-${part.num}">
           <summary>${part.num}. ${escape(part.title)}<span class="course-done">${done.has(courseId(id, part.num)) ? "✓" : ""}</span></summary>
+          ${related < 0 ? "" : window.ATELIER_SKETCH.render(doc.file, related, escape, false, true)}
           <div class="source-prose">${escape(part.body.trim())}</div>
           ${check(courseId(id, part.num), "Cette section est comprise")}
-        </details>`).join("")}`;
+        </details>`;
+        }).join("")}`;
     } else {
       const context = mode === "context";
       notes.innerHTML = `
@@ -304,7 +296,8 @@
           }).join("")}</div>
         <h2>${escape(question.title)}</h2>
         ${question.prompt ? `<p class="prompt">${escape(question.prompt)}</p>` : ""}
-        ${!context && docIndex === 0 ? `<p><mark>${escape(highlights[module][questionIndex])}</mark></p>` : ""}
+        ${window.ATELIER_SKETCH.render(doc.file, questionIndex, escape, context)}
+        <h3 class="study-answer-heading">${context ? "Comprendre la notion" : "Corrigé détaillé"}</h3>
         ${prose(context ? question.text : question.body)}
         ${context ? `<div class="context-links">Passages à lire${question.refs.map(([c, num]) => {
           const [label, id] = doc.courses[c];
