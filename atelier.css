@@ -267,3 +267,75 @@ progress { width: 100%; height: 8px; accent-color: var(--accent); }
   .sketch-arrow { right: -10px; width: 10px; font-size: .85rem; }
   .sketch-nodes { gap: 8px; }
 }
+
+
+/* Corrections annotées et leçons d’application. */
+.notes-scroll .worked-solution > .study-sketch {
+  margin-top: 0;
+  background: #fff9e8;
+  border-color: #c4b38c;
+}
+.solution-steps { display: grid; gap: 12px; margin: 14px 0; }
+.solution-note {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: clamp(7px, 3cqw, 17px);
+  align-items: start;
+  padding: 13px clamp(9px, 3cqw, 16px);
+  margin: 0 0 11px;
+  border: 1px solid #d7cdb7;
+  border-left: 3px solid #a7b8ab;
+  border-radius: 4px 12px 10px 6px;
+  background: #fffdfa;
+}
+.solution-steps .solution-note { margin: 0; }
+.solution-doodle { padding-top: 2px; transform: rotate(-5deg); color: #394c46; }
+.solution-doodle svg {
+  display: block; width: 100%; fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.solution-note:nth-child(even) .solution-doodle { transform: rotate(4deg); }
+.notes-scroll .solution-note h4,
+.notes-scroll .topic-lesson h4 {
+  margin: 0 0 5px;
+  color: var(--accent);
+  font: 700 clamp(1.02rem, 4.8cqw, 1.38rem)/1.18 "Kalam", cursive;
+}
+.solution-note dl { margin: 0; display: grid; gap: 6px 12px; }
+.solution-note dl > div { min-width: 0; }
+.solution-note dt { color: var(--accent); font: 800 .69rem/1.35 "Plus Jakarta Sans", sans-serif; }
+.solution-note dd { margin: 2px 0 0; font-size: .84rem; line-height: 1.48; overflow-wrap: anywhere; }
+.notes-scroll .solution-note p { margin: 0; font-size: .88rem; line-height: 1.54; }
+.answer-stamp {
+  display: inline-flex; align-items: baseline; gap: 8px;
+  padding: 5px 12px 3px; margin-bottom: 10px;
+  background: #fff0b7; border: 1px solid #b9a46e;
+  border-radius: 10px 6px 12px 6px; color: #314e43;
+  font: 800 .78rem/1.5 "Plus Jakarta Sans", sans-serif;
+}
+.answer-stamp strong { font: 700 1.38rem/1 "Kalam", cursive; }
+.topic-lesson {
+  padding: 2px clamp(10px, 3.5cqw, 20px) 12px;
+  border-left: 3px solid #83a599;
+  background: #f8fcf5e8;
+  border-radius: 3px 8px 8px 3px;
+}
+.topic-lesson section + section { margin-top: 14px; }
+.notes-scroll .topic-lesson p { margin: 0; font-size: .9rem; line-height: 1.58; }
+.course-practice {
+  margin-top: 14px; padding: 9px 10px;
+  background: #fffbeb; border: 1px dashed #b5a278; border-radius: 6px;
+}
+.course-practice summary { cursor: pointer; color: var(--accent); font-weight: 700; }
+.course-practice summary + p { padding: 6px 0 4px; }
+@container (min-width: 430px) {
+  .solution-note dl:has(> div:nth-child(3)) { grid-template-columns: 1fr 1fr; }
+}
+@container (max-width: 270px) {
+  .solution-note { grid-template-columns: 39px minmax(0, 1fr); }
+}
+
+.worked-scene { display: block; width: min(100%, 390px); height: auto; margin: 8px auto 10px; }
+.scene-pencil { fill: none; stroke: #40564c; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.scene-dash { stroke: #6a8273; stroke-dasharray: 4 4; }
+.scene-trace { stroke: #367b69; stroke-width: 3; }
+.scene-label { fill: #344a42; font: 700 13px "Kalam", sans-serif; }

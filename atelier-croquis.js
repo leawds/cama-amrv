@@ -42,7 +42,29 @@
     return `<svg viewBox="0 0 96 56" aria-hidden="true" focusable="false"><path class="pencil-echo" d="${path}" transform="translate(0.8 0.9)"/><path class="pencil-line" d="${path}"/></svg>`;
   }
 
-  function draw(entry, escape, compact = false) {
+  const workedScenes = {
+    craneWall: `<svg class="worked-scene" viewBox="0 0 330 145" role="img" aria-label="Grue, deux positions de la charge et distance minimale jusqu’au mur">
+      <g class="scene-pencil">
+        <path d="M15 124Q164 121 316 124M38 123V23l17-13 174 15-191-2m16-11v111m-15-89 14 11-14 12 14 12-14 12 14 12-14 13 14 14"/>
+        <path d="M148 25v58m-9 0h18v16h-18zM296 33v90m-2-89h13v89m-12-76 11-9m-11 24 11-9m-11 24 11-9m-11 24 11-9m-11 24 11-9"/>
+        <path class="scene-dash" d="M148 25l77 47m-77 28q48 12 78-19"/>
+        <path d="M218 69h19v16h-19zM237 97h57m-57 0 6-4m-6 4 6 4m51-4-6-4m6 4-6 4"/>
+      </g>
+      <g class="scene-label"><text x="86" y="109">charge au départ</text><text x="216" y="61">au plus près</text><text x="278" y="24">mur</text><text x="243" y="114">distance min.</text></g>
+    </svg>`,
+    birdSignal: `<svg class="worked-scene" viewBox="0 0 330 135" role="img" aria-label="Spectrogramme schématique d’un chant, avec le temps horizontal et la fréquence verticale">
+      <g class="scene-pencil">
+        <path d="M59 18v88h244m-244-88-4 7m4-7 4 7m240 81-8-4m8 4-8 4"/>
+        <path class="scene-dash" d="M60 58h231m-194 47V76m86 29V50m47 55V55"/>
+        <path class="scene-trace" d="M97 80q16-14 24-29m-23 38q18-11 27-30m55 22q13-31 34-41m-29 49q14-30 36-39m12 18q12 10 30 10"/>
+        <path d="M98 116h46m39 0h80"/>
+      </g>
+      <g class="scene-label"><text x="4" y="13">fréquence</text><text x="269" y="126">temps</text><text x="100" y="133">note 1</text><text x="199" y="133">note 2</text></g>
+    </svg>`
+  };
+
+
+  function draw(entry, escape, compact = false, label = "Croquis de cours", scene) {
     const [title, diagram, rule, apply] = entry.split("~");
     const tokens = diagram.split(/\s+([>|])\s+/);
     const icons = tokens.filter((_, i) => i % 2 === 0).map(token => {
@@ -52,10 +74,10 @@
     const flow = !tokens.includes("|");
     const cols = icons.length === 4 ? 2 : Math.min(icons.length, 3);
     return `<figure class="study-sketch${compact ? " study-sketch-small" : ""}">
-      <figcaption><span class="sketch-eyebrow">Croquis de cours</span><strong>${escape(title)}</strong></figcaption>
-      <ol class="sketch-nodes ${flow ? "sketch-flow" : "sketch-compare"}" data-cols="${cols}" style="--sketch-cols:${cols}">
+      <figcaption><span class="sketch-eyebrow">${escape(label)}</span><strong>${escape(title)}</strong></figcaption>
+      ${workedScenes[scene] || `<ol class="sketch-nodes ${flow ? "sketch-flow" : "sketch-compare"}" data-cols="${cols}" style="--sketch-cols:${cols}">
         ${icons.map(([icon,label], i) => `<li>${flow ? `<span class="sketch-step" aria-hidden="true">${i + 1}</span>` : ""}${illustration(icon)}<span class="sketch-label">${escape(label)}</span>${tokens[2 * i + 1] === ">" ? '<span class="sketch-arrow" aria-hidden="true">→</span>' : ""}</li>`).join("")}
-      </ol>
+      </ol>`}
       <p class="sketch-rule"><mark>${escape(rule)}</mark></p>
       ${apply ? `<p class="sketch-practice"><b>Pour refaire la question</b> ${escape(apply)}</p>` : ""}
     </figure>`;
@@ -70,5 +92,5 @@
       ${extra.map(entry => draw(entry, escape, true)).join("")}</details>` : "");
   }
 
-  window.ATELIER_SKETCH = { render, glyphs: Object.keys(glyphs) };
+  window.ATELIER_SKETCH = { render, draw, illustration, glyphs: Object.keys(glyphs) };
 })();

@@ -12,9 +12,10 @@
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .replace(/&lt;code&gt;(.+?)&lt;\/code&gt;/g, "<code>$1</code>");
 
-  function prose(text) {
+  function prose(text, icons) {
     const lines = text.trim().split("\n");
     const html = [];
+    let step = 0;
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
@@ -25,43 +26,35 @@
         const rows = [];
         while (i < lines.length && lines[i].trim().startsWith("|")) rows.push(cells(lines[i++]));
         i--;
+        if (icons) {
+          html.push(`<div class="solution-steps">${rows.map(([title, ...values]) =>
+            solutionNote(title, icons[step++], `<dl>${values.map((value, index) =>
+              `<div><dt>${inline(header[index + 1].trim())}</dt><dd>${inline(value.trim())}</dd></div>`
+            ).join("")}</dl>`)
+          ).join("")}</div>`);
+          continue;
+        }
         html.push(`<div class="table-scroll" tabindex="0" aria-label="Tableau à faire défiler"><table><thead><tr>${header.map(v => `<th scope="col">${inline(v)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map((v, i) => `<td data-label="${escape(header[i].trim())}">${inline(v)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`);
       } else {
-        html.push(`<p>${inline(line)}</p>`);
+        const numbered = icons && line.match(/^(\d+\. \*\*[^*]+\*\*)\s+(.+)$/);
+        html.push(numbered
+          ? solutionNote(numbered[1], icons[step++], `<p>${inline(numbered[2])}</p>`)
+          : `<p>${inline(line)}</p>`);
       }
     }
     return html.join("");
   }
 
-  const tdContexts = {
-    amvr: [
-      {
-        refs: [[0, 1]],
-        text: "==La différence se lit dans ce que tu produis.== Une équation du pendule décrit comment la charge peut bouger. Une courbe enregistrée après une rafale décrit comment elle a effectivement évolué dans un essai. Pour répondre, passe par cinq points · définition, but, objet, résultat et lien.\n\n**Vérifie-toi.** Choisir les masses à étudier prépare l’essai. Faire tourner le programme avec une charge de 800 kg exécute cet essai."
-      },
-      {
-        refs: [[0, 1]],
-        text: "==Construire → implémenter → exécuter.== Écrire la règle de collision, la programmer et déclencher un test avec un mur sont trois opérations distinctes. À l’analyse, on mesure l’écart entre la charge et le mur. Au raffinement, on ajuste un paramètre puis on rejoue le même scénario pour comparer.\n\n**Pour remplir le tableau**, associe à chaque étape une action vérifiable, un outil et la personne qui s’en sert."
-      },
-      {
-        refs: [[0, 2], [1, 1], [1, 2], [1, 3]],
-        text: "==Le point de vue est piloté par la tête, la grue par les contrôleurs.== Suivi de tête et gestes sont des entrées. Image stéréoscopique, alarme spatialisée et vibration sont des sorties possibles. La présence correspond au sentiment d’être dans la cabine.\n\n**Justifie l’immersion élevée** avec une chaîne concrète · le grutier se penche, les capteurs détectent le mouvement, la vue s’ajuste et il suit la charge depuis le nouveau point de vue."
-      }
-    ],
-    cama: [
-      {
-        refs: [[0, 2], [0, 3], [0, 4], [0, 5]],
-        text: "==Compte les canaux et les dimensions séparément.== Une photo et du texte sont deux formes perçues par la vue. Une voix ajoute l’audition. Un formulaire devient interactif quand la soumission déclenche une validation ou un message.\n\n**Délimite la scène** par une unité de contenu ou d’état · une interview dans un documentaire, la saisie ou la confirmation dans un formulaire. Un lien hypermédia permet de naviguer. Un lien sémantique garantit que les éléments font sens ensemble."
-      },
-      {
-        refs: [[0, 1], [0, 3]],
-        text: "==Origine → nouveau code → information conservée → limite.== Le chant d’oiseau est entendu. Son spectrogramme est vu et conserve les fréquences et durées, mais il faut interpréter le tracé. L’acidité ressentie est gustative. Un pH écrit transmet une mesure différente de la sensation.\n\n**Cas abstraits.** La dimension d’expression d’un algorithme dépend de sa forme. Le même pseudo-code peut être affiché, lu à voix haute ou transcrit en braille."
-      },
-      {
-        refs: [[0, 1], [0, 3]],
-        text: "==Sépare ce qui est transmis, la forme, le matériel et le sens.== Si la manette vibre pour signaler un choc, le choc est le contenu du message, la vibration est le canal, la manette matérialise le signal et le toucher est la dimension.\n\n**Teste la distinction.** Remplacer un texte sur écran par le même texte imprimé change son support. Le canal écrit et la dimension visuelle restent les mêmes."
-      }
-    ]
+  function solutionNote(title, icon, content) {
+    return `<section class="solution-note">
+      <div class="solution-doodle" aria-hidden="true">${window.ATELIER_SKETCH.illustration(icon)}</div>
+      <div class="solution-note-text"><h4>${inline(title.trim())}</h4>${content}</div>
+    </section>`;
+  }
+
+  const tdRefs = {
+    amvr: [[[0, 1]], [[0, 1]], [[0, 2], [1, 1], [1, 2], [1, 3]]],
+    cama: [[[0, 2], [0, 3], [0, 4], [0, 5]], [[0, 1], [0, 3]], [[0, 1], [0, 3]]]
   };
 
   const archiveTopics = {
@@ -140,7 +133,7 @@
       file: td.td,
       courses: td.courses,
       lesson: td.lesson,
-      questions: td.questions.map(([title, prompt, body], i) => ({ title, prompt, body, ...tdContexts[module][i], page: 0 }))
+      questions: td.questions.map(([title, prompt, body], i) => ({ title, prompt, body, refs: tdRefs[module][i], study: window.ATELIER_TD1[td.td][i], page: 0 }))
     }, ...window.TEST_ONE_ARCHIVE[module].map(archive => {
       const parts = archive.correction.trim().split(/\n\s*\n/);
       const topics = archiveTopics[archive.file];
@@ -164,7 +157,7 @@
       const questions = qcm ? qcm.map(([title, key, explanation, refs], i) => ({
         title: "Q" + (i + 1) + " · " + title,
         prompt: "",
-        body: "==Réponse " + key + "==\n\n" + explanation,
+        key, body: explanation,
         refs,
         page: exam && i >= secondPageAt ? 1 : 0, offset: (qcmPositions[archive.file][i] - 20) / 842
       })) : [];
@@ -173,7 +166,7 @@
           if (qcm && i === 0) return;
           const sameCount = topics.length === parts.length;
           const body = sameCount ? parts[i] : exam && module === "cama" ? parts[1] : archive.correction;
-          questions.push({ title, prompt: "", text, refs, page, body });
+          questions.push({ title, prompt: "", text, refs, page, body, diagram: window.ATELIER_ANNAL_SOLUTIONS[archive.file]?.[qcm ? i - 1 : i] });
         });
       }
       return { ...archive, courses, short: archive.title, questions };
@@ -284,6 +277,8 @@
         }).join("")}`;
     } else {
       const context = mode === "context";
+      const study = question.study;
+      const diagram = study?.diagram || question.diagram;
       notes.innerHTML = `
         <div class="question-picker" role="group" aria-label="Questions">${doc.questions.length > 5 ? `
           <button type="button" data-shift="-1" aria-label="Question précédente" ${questionIndex === 0 ? "disabled" : ""}>←</button>
@@ -296,7 +291,18 @@
         <h2>${escape(question.title)}</h2>
         ${question.prompt ? `<p class="prompt">${escape(question.prompt)}</p>` : ""}
         ${context ? `
-          ${window.ATELIER_SKETCH.render(doc.file, questionIndex, escape, true)}
+          ${study ? `
+            <section class="topic-lesson">
+              <h3 class="study-answer-heading">La notion dans un autre exemple</h3>
+              ${window.ATELIER_SKETCH.draw(study.courseDiagram, escape, true)}
+              ${study.course.map(([title, detail]) => `<section><h4>${escape(title)}</h4><p>${escape(detail)}</p></section>`).join("")}
+              <details class="course-practice">
+                <summary>À toi de jouer</summary>
+                <p>${escape(study.practice[0])}</p>
+                <details><summary>Vérifier mon raisonnement</summary><p>${escape(study.practice[1])}</p></details>
+              </details>
+            </section>`
+            : window.ATELIER_SKETCH.render(doc.file, questionIndex, escape, true)}
           ${question.text ? `<h3 class="study-answer-heading">Comprendre la notion</h3>${prose(question.text)}` : ""}
           <div class="context-links">Passages à lire${question.refs.map(([c, num]) => {
             const [label, id] = doc.courses[c];
@@ -304,7 +310,11 @@
             return `<button type="button" data-jump="${c},${num}">${escape(label.split(" · ")[0])}${part ? " · § " + num + " " + escape(part.title) : ""}</button>`;
           }).join("")}</div>` : `
           <h3 class="study-answer-heading">Corrigé détaillé</h3>
-          ${prose(question.body)}
+          <div class="worked-solution">
+            ${diagram ? window.ATELIER_SKETCH.draw(diagram, escape, true, "Dessin du corrigé", study?.scene) : ""}
+            ${question.key ? `<div class="answer-stamp"><span>Réponse</span><strong>${escape(question.key)}</strong></div>` : ""}
+            ${prose(question.body, study?.icons)}
+          </div>
           ${check(taskId(doc, questionIndex), "Je sais refaire cette question")}
           <div class="context-links"><button type="button" data-open-context>Revoir le cours de cette question →</button></div>
         `}`;
