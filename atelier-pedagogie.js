@@ -4,6 +4,7 @@ window.ATELIER_TD1 = {
     {
       courseDiagram: "Deux essais, un même train~plan:Modèle de freinage > play:Rail sec ou humide > graph:Distances comparées~Garde la vitesse initiale et change l’adhérence pour étudier son effet.",
       scene: "craneExperiment",
+      icons: ["plan", "target", "cube", "graph", "loop"],
       diagram: "Du pendule à la courbe~crane:Charge suspendue > graph:Angle au fil du temps~En haut, les éléments retenus dans le modèle. En bas, le mouvement calculé pour une rafale.",
       course: [
         ["Choisir ce que le modèle représente", "Un modèle est une abstraction construite pour répondre à une question. Pour étudier l’arrêt d’un train, on garde la vitesse, le freinage et l’adhérence. La couleur des wagons ne joue aucun rôle dans ce calcul."],
