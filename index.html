@@ -37,7 +37,7 @@
               <span class="badge-icon">🎓</span> Master AIA • USTO-MB
             </span>
             <span class="exam-sticky-tag">
-              ⚡ Examen Demain
+              ⚡ Test 1 · Dimanche 8 novembre
             </span>
           </div>
 
@@ -56,7 +56,8 @@
 
           <div class="hero-actions-container">
             <div class="hero-actions">
-              <button class="hero-btn-primary" onclick="document.querySelector('[data-tab=\'courses\']').click(); document.getElementById('courses-list').scrollIntoView({behavior: 'smooth'});">
+              <a class="hero-btn-primary test-one-hero-link" href="atelier.html">🎯 Réviser le Test 1</a>
+              <button class="hero-btn-secondary" onclick="document.querySelector('[data-tab=\'courses\']').click(); document.getElementById('courses-list').scrollIntoView({behavior: 'smooth'});">
                 📖 Ouvrir les Fiches de Cours
               </button>
               <button class="hero-btn-secondary" onclick="document.querySelector('[data-tab=\'quiz\']').click(); document.getElementById('section-quiz').scrollIntoView({behavior: 'smooth'});">
@@ -199,6 +200,7 @@
 
     <!-- NAVIGATION TABS -->
     <nav class="nav-tabs">
+      <a class="tab-btn test-one-hero-link" href="atelier.html">🎯 Test 1</a>
       <button class="tab-btn active" data-tab="courses">
         <span>Synthèses & Tableaux</span>
         <span class="badge-count" id="badge-courses">0</span>

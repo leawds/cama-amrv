@@ -1146,6 +1146,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bQuiz) bQuiz.innerText = qCount;
   }
 
+
+  function openLegacyTestLink() {
+    const path = location.hash.match(/^#test-1(?:-(amvr|cama))?$/);
+    if (path) location.replace("atelier.html" + (path[1] ? "#" + path[1] : ""));
+  }
+  window.addEventListener("hashchange", openLegacyTestLink);
+  openLegacyTestLink();
+
   // INITIAL RUN
   applyModuleFilter();
 });

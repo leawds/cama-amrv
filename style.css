@@ -3306,3 +3306,5 @@ mark, .hl-yellow {
     height: 420px;
   }
 }
+
+.test-one-hero-link { text-decoration: none; text-align: center; }

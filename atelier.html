@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atelier Test 1 · Master AIA</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Lora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="atelier.css">
+  <script defer src="test-1-data.js"></script>
+  <script defer src="test-1-annales.js"></script>
+  <script defer src="atelier-cours.js"></script>
+  <script defer src="atelier-documents.js"></script>
+  <script defer src="atelier-qcm.js"></script>
+  <script defer src="atelier.js"></script>
+</head>
+<body>
+  <header class="atelier-header">
+    <div class="brand">
+      <a href="index.html" aria-label="Retour à la plateforme">←</a>
+      <span>Master AIA <b>Atelier Test 1</b></span>
+    </div>
+    <div class="module-switch" role="group" aria-label="Module">
+      <button type="button" data-module="amvr">AMVR</button>
+      <button type="button" data-module="cama">CAMA</button>
+    </div>
+    <button type="button" id="next-task" class="next-task">Reprendre la révision <span aria-hidden="true">↗</span></button>
+  </header>
+  <main class="atelier-grid">
+    <aside class="library" aria-label="Bibliothèque de révision">
+      <div class="progress-card">
+        <div><span id="progress-label">Progression</span><strong id="progress-number">0 %</strong></div>
+        <progress id="progress" max="100" value="0" aria-labelledby="progress-label"></progress>
+        <small id="progress-detail"></small>
+        <small id="progress-next"></small>
+      </div>
+      <nav id="library" aria-label="Fiches et annales"></nav>
+      <details class="plan">
+        <summary>Plan pour dimanche</summary>
+        <ol>
+          <li><b>Jeudi</b> · AMVR, cours et grue.</li>
+          <li><b>Vendredi</b> · CAMA, cours et exercices.</li>
+          <li><b>Samedi</b> · Refaire les TD puis tester une annale.</li>
+          <li><b>Dimanche</b> · 15 min de rappel sans notes.</li>
+        </ol>
+      </details>
+    </aside>
+    <section class="desk" aria-labelledby="document-title">
+      <header class="desk-heading">
+        <div>
+          <p id="document-meta"></p>
+          <h1 id="document-title"></h1>
+        </div>
+        <div class="layout-tools">
+          <button type="button" id="focus-layout" aria-pressed="false">Agrandir le cahier</button>
+          <div class="mobile-layout" role="group" aria-label="Page à afficher">
+            <button type="button" data-mobile="notes">Cahier</button>
+            <button type="button" data-mobile="document">Document</button>
+          </div>
+        </div>
+      </header>
+      <div class="notebook" id="notebook" data-mobile-page="notes">
+        <section class="notes-pane" aria-label="Cahier de travail">
+          <nav class="work-tabs" aria-label="Outils d’étude">
+            <button type="button" data-mode="solution">Corrigé expliqué</button>
+            <button type="button" data-mode="context">Cours de la question</button>
+            <button type="button" data-mode="course">Cours complet</button>
+          </nav>
+          <div class="notes-scroll" id="notes"></div>
+        </section>
+        <div class="spine" id="spine" role="separator" tabindex="0" aria-orientation="vertical" aria-label="Largeur du cahier" aria-valuemin="30" aria-valuemax="70" aria-valuenow="47"></div>
+        <section class="document-pane" aria-label="Visionneuse du document">
+          <div class="document-bar">
+            <div class="document-switch" role="group" aria-label="Version du document">
+              <button type="button" data-view="subject">Sujet</button>
+              <button type="button" data-view="answer">Feuille corrigée</button>
+            </div>
+            <div class="zoom" role="group" aria-label="Zoom">
+              <button type="button" id="zoom-out" aria-label="Dézoomer">−</button>
+              <button type="button" id="zoom-reset" aria-label="Ajuster à la largeur">100 %</button>
+              <button type="button" id="zoom-in" aria-label="Zoomer">+</button>
+            </div>
+          </div>
+          <div class="viewer" id="viewer" tabindex="0" aria-label="Document à faire défiler">
+            <img id="scan" alt="" draggable="false">
+          </div>
+          <div class="document-footer">
+            <button type="button" id="prev-page" aria-label="Page précédente">←</button>
+            <span id="page-count"></span>
+            <button type="button" id="next-page" aria-label="Page suivante">→</button>
+            <a id="original" target="_blank" rel="noopener">Original ↗</a>
+          </div>
+        </section>
+      </div>
+      <p id="study-status" class="sr-only" role="status"></p>
+    </section>
+  </main>
+</body>
+</html>
