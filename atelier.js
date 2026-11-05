@@ -165,7 +165,6 @@
         title: "Q" + (i + 1) + " · " + title,
         prompt: "",
         body: "==Réponse " + key + "==\n\n" + explanation,
-        text: explanation,
         refs,
         page: exam && i >= secondPageAt ? 1 : 0, offset: (qcmPositions[archive.file][i] - 20) / 842
       })) : [];
@@ -296,15 +295,19 @@
           }).join("")}</div>
         <h2>${escape(question.title)}</h2>
         ${question.prompt ? `<p class="prompt">${escape(question.prompt)}</p>` : ""}
-        ${window.ATELIER_SKETCH.render(doc.file, questionIndex, escape, context)}
-        <h3 class="study-answer-heading">${context ? "Comprendre la notion" : "Corrigé détaillé"}</h3>
-        ${prose(context ? question.text : question.body)}
-        ${context ? `<div class="context-links">Passages à lire${question.refs.map(([c, num]) => {
-          const [label, id] = doc.courses[c];
-          const part = courseMap[id].parts.find(item => item.num === num);
-          return `<button type="button" data-jump="${c},${num}">${escape(label.split(" · ")[0])}${part ? " · § " + num + " " + escape(part.title) : ""}</button>`;
-        }).join("")}</div>` : check(taskId(doc, questionIndex), "Je sais refaire cette question")}
-        ${context ? "" : '<div class="context-links"><button type="button" data-open-context>Revoir le cours de cette question →</button></div>'}`;
+        ${context ? `
+          ${window.ATELIER_SKETCH.render(doc.file, questionIndex, escape, true)}
+          ${question.text ? `<h3 class="study-answer-heading">Comprendre la notion</h3>${prose(question.text)}` : ""}
+          <div class="context-links">Passages à lire${question.refs.map(([c, num]) => {
+            const [label, id] = doc.courses[c];
+            const part = courseMap[id].parts.find(item => item.num === num);
+            return `<button type="button" data-jump="${c},${num}">${escape(label.split(" · ")[0])}${part ? " · § " + num + " " + escape(part.title) : ""}</button>`;
+          }).join("")}</div>` : `
+          <h3 class="study-answer-heading">Corrigé détaillé</h3>
+          ${prose(question.body)}
+          ${check(taskId(doc, questionIndex), "Je sais refaire cette question")}
+          <div class="context-links"><button type="button" data-open-context>Revoir le cours de cette question →</button></div>
+        `}`;
     }
     notes.scrollTop = 0;
   }

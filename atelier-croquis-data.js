@@ -36,7 +36,7 @@ window.ATELIER_SKETCHES = {
     "Écoute en VR~person:Mouvements > speaker:Dispositif > ear:Qualité perçue~Choisis selon les degrés de liberté, l’immersion voulue et la restitution.",
     "Normes par modalité~eye:Vision | ear:Audio | hand:Haptique~Le sujet regroupe la normalisation par dimension.",
     "Transformations~cube:Solide > arrow:Tourner / déplacer > grid:Changer l’échelle~Le sujet retient les translations, les rotations et la mise à l’échelle.",
-    "Adjacence~network:Objets voisins > plan:Relations > cube:Topologie~Le cours classe le voisinage dans la topologie. Le corrigé de cette annale coche B et C."
+    "Adjacence~network:Objets voisins > plan:Relations > cube:Topologie~Le cours classe le voisinage dans la topologie. Repère les objets reliés entre eux."
   ],
   "AMAD_2024_2025_Session_0_5.pdf": [
     "Dimension d’appui~screen:Message principal > speaker:Indice auxiliaire > person:Compréhension~Un canal auxiliaire complète la dimension principale.",
